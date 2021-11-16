@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="https://unpkg.com/vue@next"></script>
+    <script defer src="./assets/script/script.js"></script>
+    <link rel="stylesheet" href="./assets/style/style.css" />
+  </head>
+  <body>
+    <!--RACINE-->
+    <div id="root">
+      <div class="container">
+        <!--FORM-->
+        <form @submit.prevent v-if="hideForm==true">
+          <div class="header_div">
+            <img class="amex" src="./img/amex.png">
+            <img src="./img/visa.png">
+          </div>
+          <div id="form_container">
+            <div class="top_container">
+            <div class="form_child">
+            <label for="nom">Nom</label>
+            <input
+              v-model="name"
+              @keyup.alt.enter="clear"
+              type="text"
+              name="nom"
+            />
+          </div>
+          <div class="form_child">
+            <label for="prenom">Prenom</label>
+            <input
+              v-model="prenom"
+              @keyup.alt.enter="clear"
+              type="text"
+              name="prenom"
+            />
+          </div>
+            </div>
+          <div class="mid_container">
+            <div class="form_child">
+            <label for="number_carte">Numero de la carte</label>
+            <input
+              @keyup.alt.enter="clear"
+              :class="theme"
+              v-model="numeroCarte"
+              type="number"
+              id="number_carte"
+            />
+            </div>
+            <div class="form_child">
+            <label for="cvc">CVC</label>
+            <input
+              @keyup.alt.enter="clear"
+              :class="theme1"
+              v-model="numeroCVC"
+              type="number"
+              id="cvc"
+            />
+            </div>
+          </div>
+            <div class="form_child">
+            <label for="date">Date d'expiration</label>
+            <input
+              @keyup.alt.enter="clear"
+              :class="theme2"
+              v-model="numeroDate"
+              class="origin"
+              type="month"
+              id="date"
+            />
+            {{numeroDate}}
+          </div>
+          <!--BUTTON SUBMIT-->
+          <button
+            @click="hideForm = !hideForm "
+            v-if="carteTrue==true && CVCTrue==true && dateTrue==true"
+          >
+            VALIDER
+          </button>
+        </div>
+        </form>
+      </div>
+      <div v-if="hideForm==false">
+        <h1>Merci de votre achat ! A bientôt</h1>
+      </div>
+    </div>
+  </body>
+</html>
